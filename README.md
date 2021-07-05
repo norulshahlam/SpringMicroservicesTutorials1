@@ -140,6 +140,8 @@ CourseCatalog will connect to CourseClient thru eureka. CourseCatalog does not r
 
 Netflix Hystrix is a framework based on Circuit Breaker Design Pattern that help to make application fault tolerant and improves resilience. This is achieved by isolating failure and preventing them from impacting other features of the application i.e. fail fast and recover asap.
 
+![alt text](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.nexsoftsys.com%2Farticles%2Fimages%2Fthe-circuit-breaker-pattern-implementation-using-netflix-hystrix.jpg&imgrefurl=https%3A%2F%2Fwww.nexsoftsys.com%2Farticles%2Fcircuit-breaker-pattern-implementation-using-netflix-hystrix.html&tbnid=q9xlvMSOQl5JsM&vet=12ahUKEwjviJyxiczxAhWX6XMBHfElA_IQMygAegUIARCuAQ..i&docid=notne4fnLK9TuM&w=1500&h=900&q=Circuit%20Breaker%20with%20Netflix%20Hystrix&ved=2ahUKEwjviJyxiczxAhWX6XMBHfElA_IQMygAegUIARCuAQ)
+
 [https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.nexsoftsys.com%2Farticles%2Fimages%2Fthe-circuit-breaker-pattern-implementation-using-netflix-hystrix.jpg&imgrefurl=https%3A%2F%2Fwww.nexsoftsys.com%2Farticles%2Fcircuit-breaker-pattern-implementation-using-netflix-hystrix.html&tbnid=q9xlvMSOQl5JsM&vet=12ahUKEwjviJyxiczxAhWX6XMBHfElA_IQMygAegUIARCuAQ..i&docid=notne4fnLK9TuM&w=1500&h=900&q=Circuit%20Breaker%20with%20Netflix%20Hystrix&ved=2ahUKEwjviJyxiczxAhWX6XMBHfElA_IQMygAegUIARCuAQ]
 
 Recap: 
