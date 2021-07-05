@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-EurekaServerApplication<EurekaServer>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.EurekaServer.EurekaServerApplication",
+      "projectName": "EurekaServer",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-CourseClientApplication<CourseClient>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.CourseClient.CourseClientApplication",
+      "projectName": "CourseClient",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-CourseCatalogApplication<CourseCatalog>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.CourseCatalog.CourseCatalogApplication",
+      "projectName": "CourseCatalog",
+      "args": ""
+    }
+  ]
+}
