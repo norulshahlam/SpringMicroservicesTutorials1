@@ -1,6 +1,10 @@
 # 2021 edition - Java, Spring Framework, Spring Boot, Spring Cloud, Microservices, IntelliJ, REST, JPA, Maven, Zuul,Ribbon
-
 # Part 1
+
+GIT:
+
+[https://github.com/futurexskill/java-springboot-microservices]
+
 
 ## overview
 
@@ -89,7 +93,10 @@ Now we will register this service as Eureka client. This service also uses sqlit
 `run and test service (in order)`
 
     EurekaServer - service discovery - http://localhost:8761/
-    CourseClient - http://localhost:8761/
+    CourseClient - http://localhost:8001/
+                    http://localhost:8001/courses
+                    http://localhost:8001/1
+                    http://localhost:8001/2
 
     
 ## Integrating the Course Catalog app with the Course app through the Eureka server
@@ -115,6 +122,18 @@ CourseCatalog will connect to CourseClient thru eureka. CourseCatalog does not r
     services are found by its app name defined in applicatin.properties. for this case, we are finding service named 'course-client'
 
         InstanceInfo instanceInfo = client.getNextServerFromEureka("course-client",false);
+
+`3. run this (in order)`
+
+    
+    EurekaServer - service discovery - http://localhost:8761/
+      CourseClient - http://localhost:8001/
+                    http://localhost:8001/courses
+                    http://localhost:8001/1
+                    http://localhost:8001/2
+    CourseCatalog - http://localhost:8002/
+                    http://localhost:8002/catalog
+                    http://localhost:8002/firstcourse
 
 
 ## Implementing Circuit Breaker with Netflix Hystrix
@@ -151,101 +170,53 @@ now in case if CourseClient is down, we have to configure CourseCatalog to give 
         @HystrixCommand(fallbackMethod = "displayDefaultHome")
 
 now try to use CourseCatalogue service to fetch CourseClient with all the instances running
-then stop CourseClient and use CourseCatalogue service to fetch CourseClient again.
 
-Both will give different results, but now if CourseClient is down, it is being handled
+     CourseCatalog - http://localhost:8002/
 
-
-
+then stop CourseClient and use CourseCatalogue service to fetch CourseClient again. Both will give different results, so now if CourseClient is down, it is being handled
 
 
+## Building the User App
+
+This will be registered in Eureka server/
+
+`url lesson:`
+  [https://www.udemy.com/course/java-spring-boot-microservices-project-for-beginners/learn/lecture/18103845#overview]
+
+`project name:`
+    UserService
+
+`3. run this (in order)`
+    
+    EurekaServer - service discovery - http://localhost:8761/
+    CourseClient - http://localhost:8001/
+                    http://localhost:8001/courses
+                    http://localhost:8001/1
+                    http://localhost:8001/2
+    CourseCatalog - http://localhost:8002/
+    UserService - http://localhost:8003/
+                http://localhost:8003/1
+                http://localhost:8003/2
 
 
+## Enhancing the Course Catalog App to fetch data from the User App
+
+CourseCatalog will fetch course info from CourseClient and corresponding user info from user-service.
 
 
+`1. run this (in order)`
+    
+    EurekaServer - service discovery - http://localhost:8761/
+    CourseClient - http://localhost:8001/
+                    http://localhost:8001/courses
+                    http://localhost:8001/1
+                    http://localhost:8001/2
+    CourseCatalog - http://localhost:8002/
+    UserService - http://localhost:8003/
+                http://localhost:8003/1
+                http://localhost:8003/2
+    CourseCatalog - http://localhost:8002/catalog
+                    http://localhost:8002/firstcourse
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-***********************************************
-
-`this is part 2 of microservice. we are learning about Externalized Configuration`
-
-Spring Boot lets you externalize your configuration so that you can work with the same application code in different environments. You can use properties files, YAML files, environment variables, and command-line arguments to externalize configuration. Property values can be injected directly into your beans by using the @Value annotation, accessed through Spring’s Environment abstraction, or be bound to structured objects through @ConfigurationProperties.
-
-`run in order`
-
-EurekaServer - service discovery - http://localhost:8761/
-Config server - Eureka client -
-http://localhost:8888/order-service/default,
-http://localhost:8888/payment-service/default
-
-in config server, we have set the config url using git uri. this git have several service properties which we can access using the above url. now try to edit something and u can see the changes reflected on the browser
-
-`create order and payment service`
-
-Order service: http://localhost:8001/
-Payment service: http://localhost:8002/
-
-`Integrating Microservices with Spring Cloud Config Server`
-
-[https://www.udemy.com/course/java-spring-boot-microservices-project-for-beginners/learn/lecture/18192604#content]
-
-a. by simply adding @EnableDiscoveryClient in both services, we r now conecting to the config server. re run both services n run the above url to see the diff response
-
-#### note
-
-if u cant connect to config server, try to add this dependency:
-
-    <dependency>
-    <groupId>org.springframework.cloud</groupId> 	<artifactId>spring-cloud-starter-bootstrap</artifactId>
-    </dependency>
-
-b. also by adding application name, we can connect to the specific service in the git url:
-
-spring.application.name=order-service
-spring.application.name=payment-service
-
-re run both services n run the above url to see the diff response
-
-c. now try to change both services in git application.properties. run the config server to see the immediate changes:
-
-http://localhost:8888/order-service/default
-http://localhost:8888/payment-service/default
-
-u will see the changes without restarting the server.but in each services, ie
-
-Order service: http://localhost:8001/
-Payment service: http://localhost:8002/
-
-### Refreshing configuration without restarting microservices
-
-u wont find the changes refelcted unless u restart both of this servers. to allow changs without resrtarting, simply do this:
-
-add `@RefreshScope` in both controllers.
-run this IN POSTMAN to refresh the changes:
-
-POST METHOD http://localhost:8002/actuator/refresh
-POST METHOD http://localhost:8001/actuator/refresh
-
-it will return the properties that was changed
-
-reload to see the changes reflected without restarting the server:
-
-Order service: http://localhost:8001/
-Payment service: http://localhost:8002/
+********************     end    ************************

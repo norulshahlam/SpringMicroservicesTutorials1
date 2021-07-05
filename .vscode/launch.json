@@ -29,6 +29,16 @@
       "mainClass": "shah.CourseCatalog.CourseCatalogApplication",
       "projectName": "CourseCatalog",
       "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-UserServiceApplication<UserService>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "shah.UserService.UserServiceApplication",
+      "projectName": "UserService",
+      "args": ""
     }
   ]
 }
